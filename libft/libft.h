@@ -3,6 +3,7 @@
 
 #include <unistd.h>
 
-void ft_putstr(char* str);
+void	ft_putstr(const char *str);
+size_t	ft_strlen(const char *str);
 
 #endif
