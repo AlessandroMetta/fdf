@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 09:43:53 by ametta            #+#    #+#             */
-/*   Updated: 2021/04/13 11:46:08 by ametta           ###   ########.fr       */
+/*   Created: 2021/01/14 16:08:01 by ametta            #+#    #+#             */
+/*   Updated: 2021/04/26 14:46:55 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_strdup(const char *s1)
 {
-	size_t	i;
+	char	*duplicated;
+	size_t	lenght;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	lenght = ft_strlen(s1) + 1;
+	duplicated = (char *)ft_calloc(lenght, sizeof(char));
+	ft_strlcpy(duplicated, s1, lenght);
+	return (duplicated);
 }

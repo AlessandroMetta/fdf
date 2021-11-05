@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 09:43:53 by ametta            #+#    #+#             */
-/*   Updated: 2021/04/13 11:46:08 by ametta           ###   ########.fr       */
+/*   Created: 2021/02/08 16:22:55 by kpersich          #+#    #+#             */
+/*   Updated: 2021/04/26 14:42:59 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-size_t	ft_strlen(const char *s)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (s[i] != '\0')
+	while (s1[i] || s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (0);
 		i++;
-	return (i);
+	}
+	return (1);
 }

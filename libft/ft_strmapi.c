@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 09:43:53 by ametta            #+#    #+#             */
-/*   Updated: 2021/04/13 11:46:08 by ametta           ###   ########.fr       */
+/*   Created: 2021/01/20 10:21:48 by ametta            #+#    #+#             */
+/*   Updated: 2021/04/26 14:47:00 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
+	unsigned int	i;
+	char			*output;
 
 	i = 0;
-	while (s[i] != '\0')
+	while (s[i] != 0)
 		i++;
-	return (i);
+	output = malloc(sizeof(char) * (i + 1));
+	if (!output)
+		return (NULL);
+	output[i] = '\0';
+	i = 0;
+	while (s[i] != 0)
+	{
+		output[i] = (*f)(i, s[i]);
+		i++;
+	}
+	if (output == NULL)
+		return (NULL);
+	return (output);
 }
