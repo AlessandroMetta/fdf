@@ -14,5 +14,7 @@ void	ft_bzero(void *s, size_t n);
 size_t	ft_strlen(const char *str);
 void	ft_putstr(const char *str);
 int		get_next_line(const int fd, char **line);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(const char *s);
 
 #endif
