@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 AR = ar rc
 RM = rm -rf
@@ -10,8 +10,9 @@ SRCS = ft_strlen.c \
 	   ft_memmove.c \
 	   ft_bzero.c \
 	   ft_realloc.c \
-	   ft_strdup \
+	   ft_strdup.c \
 	   ft_strchr.c \
+	   ft_strjoin.c \
 
 OBJS = $(SRCS:.c=.o)
 

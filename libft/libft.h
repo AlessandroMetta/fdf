@@ -16,5 +16,6 @@ void	ft_putstr(const char *str);
 int		get_next_line(const int fd, char **line);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
+char	*ft_strjoin(const char *s1, char const *s2);
 
 #endif
