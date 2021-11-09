@@ -1,6 +1,6 @@
 # compiling specs
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit -lm
 
