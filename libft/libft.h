@@ -5,7 +5,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define MAX_F 256
+# define MAX_FD 256
 # define BUFFER_SIZE 42
 
 void	*ft_memmove(void *dst, const void *src, size_t len);
