@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:50:46 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/10 16:09:54 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/10 19:01:18 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,20 @@ int	open_file(int argc, char **argv)
 void map_create(int fd)
 {
 	char	*line_red;
+	char	**mat;
+	int		i = 0;
 
 	while (get_next_line(fd, &line_red))
 	{
-		ft_putendl(line_red);
-		free(line_red);
+		mat = ft_split(line_red, ' ');
+		while (mat[i])
+		{
+			ft_putendl(mat[i]);
+			free(mat[i]);
+			i++;
+		}
+		free(mat);
+		ft_putendl("------");
 	}
 	free(line_red);
 }
