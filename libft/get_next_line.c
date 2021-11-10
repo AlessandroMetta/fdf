@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/10 12:53:46 by ametta            #+#    #+#             */
+/*   Updated: 2021/11/10 12:55:09 by ametta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int free_buffer(char *buffer)
+int	free_buffer(char *buffer)
 {
 	free(buffer);
 	return (-1);
 }
 
-int ft_return(char **ptr_newline, char **buffer)
+int	ft_return(char **ptr_newline, char **buffer)
 {
-	char *new_line;
-	
-	if(*ptr_newline)
+	char	*new_line;
+
+	if (*ptr_newline)
 	{
 		new_line = ft_strdup(*ptr_newline + 1);
 		if (!new_line)
@@ -24,7 +36,7 @@ int ft_return(char **ptr_newline, char **buffer)
 	return (0);
 }
 
-int read_buffer(char **ptr_newline, char **buffer, int fd)
+int	read_buffer(char **ptr_newline, char **buffer, int fd)
 {
 	int		read_ret;
 	char	*read_buffer;
@@ -52,7 +64,7 @@ int read_buffer(char **ptr_newline, char **buffer, int fd)
 	return (read_ret);
 }
 
-int get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*buffer[MAX_FD];
 	char		*ptr_newline;
@@ -75,4 +87,3 @@ int get_next_line(int fd, char **line)
 		return (free_buffer(buffer[fd]));
 	return (ft_return(&ptr_newline, &buffer[fd]));
 }
-

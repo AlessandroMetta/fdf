@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/10 12:58:31 by ametta            #+#    #+#             */
+/*   Updated: 2021/11/10 12:58:34 by ametta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char *ft_strjoin(const char *s1, char const *s2)
+char	*ft_strjoin(const char *s1, char const *s2)
 {
 	char	*str;
 	int		c_str;
