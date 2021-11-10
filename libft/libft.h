@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:52:55 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/10 12:53:24 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/10 16:19:24 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ void	*ft_realloc(void *ptr, size_t size);
 void	ft_bzero(void *s, size_t n);
 size_t	ft_strlen(const char *str);
 void	ft_putstr(const char *str);
+void	ft_putendl(const char *str);
 int		get_next_line(const int fd, char **line);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(const char *s1, char const *s2);
+int		ft_atoi(const char *str);
+char	**ft_split(const char *str, const char chr);
 
 #endif
