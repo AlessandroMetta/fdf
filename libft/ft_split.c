@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 15:25:51 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/10 19:04:06 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/11 17:41:50 by gasolino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,22 @@
 int	word_counter(const char *line, const char chr)
 {
 	int i;
-	int ret_value;
+	int word_counter;
 
 	i = 0;
-	ret_value = 0;
+	word_counter = 0;
 	while (line[i] != '\0')
 	{
 		if (line[i] == chr)
-			ret_value++;
-		i++;
+			i++;
+		else
+		{
+			word_counter++;
+			while(line[i] != '\0' && line[i] != chr)
+				i++;
+		}
 	}
-	return (ret_value);
+	return (word_counter);
 }
 
 char **populate(const char *line, const char chr, char **line_split, int wc)
@@ -64,7 +69,7 @@ char	**ft_split(const char *line, const char chr)
 	wc = word_counter(line, chr);
 	if (!line)
 		return (NULL);
-	line_splitted = (char **)malloc(sizeof(char) * (wc + 1));
+	line_splitted = (char **)malloc(sizeof(char *) * (wc + 1));
 	if (!line_splitted)
 		return (NULL);
 	line_splitted[wc] = NULL;
