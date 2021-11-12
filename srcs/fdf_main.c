@@ -6,11 +6,67 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:50:46 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/12 12:52:14 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/12 18:36:54 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
+
+typedef struct s_line
+{
+	char	*line;
+	char	**l_split;
+	int		dim;
+}				t_line;
+
+void free_map(char ***map)
+{
+	int line = 0;
+	int word = 0;
+
+	while (map[line])
+	{
+		word = 0;
+		while (map[line][word])
+		{
+			free(map[line][word]);
+			word++;
+		}
+		free(map[line][word]);
+		free(map[line]);
+		line++;
+	}
+	free(map);
+}
+
+int dim_line(char **line)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+		i++;
+	return i;
+}
+
+void print_map(char ***map)
+{
+	int line = 0;
+	int word = 0;
+
+	while (map[line])
+	{
+		word = 0;
+		while (map[line][word])
+		{
+			ft_putstr(map[line][word]);
+			write(1, " ", 1);
+			word++;
+		}
+		write(1, "\n", 1);
+		line++;
+	}
+}
 
 int	open_file(int argc, char **argv)
 {
@@ -32,56 +88,82 @@ int	open_file(int argc, char **argv)
 	return (fd);
 }
 
-char ***allocate_map(char ***map, int prev_dim)
+char ***reallocate_map(char ***map, int prev_dim, t_line line/*char **split_line, int prev_dim*/)
 {
 	char	***new;
-	int		i;
-
-	i = 0;
-	if (!map)
+	int		i_line;
+	int		count_word;
+	int		i_word;
+	
+	i_line = 0;
+	// alloco il contenitore (formato da varie linee) + 1 (NULL)
+	new = (char ***)malloc(sizeof(char **) * (prev_dim + 1));
+	if (!new)
+		return (NULL);
+	while (i_line < prev_dim)
 	{
-		new = (char ***)malloc(sizeof(char **) * 1);
-		if (!new)
+		count_word = dim_line(map[i_line]);
+		// alloco quante parole contiene ogni linea + 1 (NULL)
+		new[i_line] = (char **)malloc(sizeof(char *) * (count_word + 1));
+		if (!new[i_line])
 			return (NULL);
-	}
-	else
-	{
-		new =  (char ***)malloc(sizeof(char **) * (prev_dim + 1));
-		while (i < prev_dim)
+		i_word = 0;
+		while (i_word < count_word)
 		{
-			new[i] = map[i];
-			i++;
+			// allocco la parola
+			new[i_line][i_word] = ft_strdup(map[i_line][i_word]);
+			free(map[i_line][i_word]);
+			i_word++;
 		}
+		free(map[i_line][i_word]);
+		free(map[i_line]);
+		new[i_line][count_word] = NULL;
+		i_line++;
 	}
+	// alloco la nuova linea e le nuove parole come precedentemnte fatto
+	new[i_line] = (char **)malloc(sizeof(char *) * (line.dim + 1));
+	if (!new[i_line])
+		return (NULL);
+	i_word = 0;
+	while (i_word < line.dim)
+	{
+		new[i_line][i_word] = ft_strdup(line.l_split[i_word]);
+		i_word++;
+	}
+	new[i_line][line.dim] = NULL;
+	new[prev_dim + 1] = NULL;
 	free(map);
 	return (new);
 }
-/*
-char ***add_row(char ***map, char **split_line, int prev_dim)
-{
-	char	***new;
-	int		line;
-	int		word;
 
-	// alloco il contenitore (formato da varie linee) + 1 (NULL)
-	new = (char ***)malloc(sizeof(char **) * prev_dim + 1);
-	// alloco quante parole contiene ogni linea + 1 (NULL)
-	new[line] = (char **)malloc(sizeof(char *) * num_word + 1);
-	// allocco la parola
-	new[line][word] = ft_strdup(map[line][word]);
-	// alloco la nuova linea e le nuove parole come precedentemnte fatto
+void free_split(char **l_split)
+{
+	int w;
+
+	w = 0;
+	while (l_split[w])
+		free(l_split[w++]);
+	free(l_split[w]);
+	free(l_split);
 }
-*/
+
 void	map_create(int fd)
 {
-	char	*line_red;
-	char	**split_ret;
-	int		i;
+	t_line	line;
+	char	***map;
+	int		map_dim;
 
-	i = 0;
-	while (get_next_line(fd, &line_red))
+	map_dim = 0;
+	map = (char ***)malloc(sizeof(char**) * (map_dim + 1));
+	map[0] = NULL;
+	while (get_next_line(fd, &line.line))
 	{
-		split_ret = ft_split(line_red, ' ');
+		line.l_split = ft_split(line.line, ' ');
+		line.dim = dim_line(line.l_split);
+		map = reallocate_map(map, map_dim++, line);
+		free_split(line.l_split);
+		free(line.line);
+		/*
 		while (split_ret[i])
 		{
 			ft_putendl(split_ret[i]);
@@ -93,8 +175,11 @@ void	map_create(int fd)
 		ft_putendl("------");
 		free(line_red);
 		i = 0;
+		*/
 	}
-	free(line_red);
+	free(line.line);
+	print_map(map);
+	free_map(map);
 }
 
 int	main(int argc, char **argv)
@@ -106,5 +191,6 @@ int	main(int argc, char **argv)
 		return (-1);
 	map_create(fd);
 	close(fd);
+	ft_putendl("---file close---");
 	return (0);
 }
