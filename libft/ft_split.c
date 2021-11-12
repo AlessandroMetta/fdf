@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 15:25:51 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/12 11:31:39 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/12 11:34:56 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	word_counter(const char *line, const char chr)
 {
-	int i;
-	int word_counter;
+	int	i;
+	int	word_counter;
 
 	i = 0;
 	word_counter = 0;
@@ -26,14 +26,14 @@ int	word_counter(const char *line, const char chr)
 		else
 		{
 			word_counter++;
-			while(line[i] != '\0' && line[i] != chr)
+			while (line[i] != '\0' && line[i] != chr)
 				i++;
 		}
 	}
 	return (word_counter);
 }
 
-char **populate(const char *line, const char chr, char **line_split, int wc)
+char	**populate(const char *line, const char chr, char **line_split, int wc)
 {
 	int	i_w;
 	int	i_c;
