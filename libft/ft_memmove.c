@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:58:53 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/10 18:15:28 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/12 11:31:03 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		((char *)dst)[i] = ((char *)src)[i];
 		i++;
 	}
+	((char *)dst)[len] = '\0';
 	return (dst);
 }

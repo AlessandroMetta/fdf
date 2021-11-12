@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 15:25:51 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/11 17:41:50 by gasolino         ###   ########.fr       */
+/*   Updated: 2021/11/12 11:31:39 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char **populate(const char *line, const char chr, char **line_split, int wc)
 			line_split[i_w] = (char *)malloc(sizeof(char) * (w_l - i_c + 1));
 			if (!line_split[i_w])
 				return (NULL);
-			ft_memmove(line_split[i_w], line + i_c, w_l - i_c);
+			ft_memmove(line_split[i_w], line + i_c, (w_l - i_c));
 			i_w++;
 			i_c = w_l;
 		}
