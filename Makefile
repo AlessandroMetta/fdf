@@ -9,7 +9,9 @@ LIBFT = libft/libft.a
 
 NAME = fdf
 
-SRCS = srcs/fdf_main.c \
+SRCS =	srcs/fdf_main.c		\
+	srcs/fdf_realloc_map.c	\
+	srcs/fdf_utils.c	\
 
 OBJS = $(SRCS:.c=.o)
 
