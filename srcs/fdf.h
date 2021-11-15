@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 10:19:09 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/15 10:19:11 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/15 11:28:33 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 
 # include "../libft/libft.h"
+# include "../mlx/mlx.h"
 
 void	free_map(char ***map);
 int		dim_line(char **line);

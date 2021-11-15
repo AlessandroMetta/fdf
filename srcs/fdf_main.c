@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:50:46 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/15 11:03:40 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/15 11:14:18 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	open_file(int argc, char **argv)
 		ft_putendl("Impossible to open the specific file");
 		return (-1);
 	}
-	ft_putendl("---File open---");
 	return (fd);
 }
 
@@ -62,9 +61,7 @@ int	main(int argc, char **argv)
 	if (fd < 0)
 		return (-1);
 	map = map_create(fd);
-	print_map(map);
 	free_map(map);
 	close(fd);
-	ft_putendl("---file close---");
 	return (0);
 }

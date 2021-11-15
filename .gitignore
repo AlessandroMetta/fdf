@@ -1,3 +1,5 @@
 *.o
 *.a
+libmlx.dylib
 fdf
+.DS_Store
