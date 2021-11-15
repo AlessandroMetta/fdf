@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:50:46 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/15 12:46:52 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/15 15:45:45 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,19 @@ int	open_file(int argc, char **argv)
 	}
 	return (fd);
 }
+int	exit_fdf(t_fdf *this)
+{
+	free_map(this->map);
+	close(this->fd);
+	mlx_destroy_window(this->connect_id, this->window_id);
+	exit(0);
+	return (0);
+}
 
-int	fdf_exit(int keycode, t_fdf *this)
+int	key_pressed(int keycode, t_fdf *this)
 {
 	if (keycode == 53)
-	{
-		free_map(this->map);
-		close(this->fd);
-		mlx_destroy_window(this->connect_id, this->window_id);
-		exit(0);
-	}
+		exit_fdf(this);
 	return (0);
 }
 
@@ -61,7 +64,8 @@ int	main(int argc, char **argv)
 	this.map = map_create(this.fd);
 	this.connect_id = mlx_init();
 	this.window_id = mlx_new_window(this.connect_id, 500, 500, "fdf");
-	mlx_key_hook(this.window_id, fdf_exit, &this);
+	mlx_hook(this.window_id, 2, 1L<<0, key_pressed, &this);
+	mlx_hook(this.window_id, 17, 1L<<5, exit_fdf, &this);
 	mlx_loop(this.connect_id);
 	return (0);
 }
