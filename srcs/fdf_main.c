@@ -6,11 +6,19 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:50:46 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/15 11:14:18 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/15 12:41:39 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+typedef struct s_fdf
+{
+	int		fd;
+	char	***map;
+	void	*connect_id;
+	void	*window_id;
+}	t_fdf;
 
 int	open_file(int argc, char **argv)
 {
@@ -31,37 +39,30 @@ int	open_file(int argc, char **argv)
 	return (fd);
 }
 
-char	***map_create(int fd)
+int fdf_exit(int keycode, t_fdf *this)
 {
-	char	***map;
-	int		map_dim;
-	char	*line;
-	char	**line_split;
 
-	map_dim = 0;
-	map = (char ***)malloc(sizeof(char **) * (map_dim + 1));
-	map[map_dim] = NULL;
-	while (get_next_line(fd, &line))
+	if (keycode == 53)
 	{
-		line_split = ft_split(line, ' ');
-		map = reallocate_map(map, map_dim++, line_split);
-		// free_split(line_split);
-		free(line);
+		free_map(this->map);
+		close(this->fd);
+		mlx_destroy_window(this->connect_id, this->window_id);
+		exit(0);
 	}
-	free(line);
-	return (map);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	int		fd;
-	char	***map;
+	t_fdf	this;
 
-	fd = open_file(argc, argv);
-	if (fd < 0)
+	this.fd = open_file(argc, argv);
+	if (this.fd < 0)
 		return (-1);
-	map = map_create(fd);
-	free_map(map);
-	close(fd);
+	this.map = map_create(this.fd);
+	this.connect_id = mlx_init();
+	this.window_id = mlx_new_window(this.connect_id, 500, 500, "fdf");
+	mlx_hook(this.window_id, 2, 1L << 0, fdf_exit, &this);
+	mlx_loop(this.connect_id);
 	return (0);
 }

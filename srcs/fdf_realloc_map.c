@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 10:16:10 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/15 11:07:13 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/15 11:43:35 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,24 @@ char	***reallocate_map(char ***old_map, int prev_dim, char **new_line)
 	new_map[i] = new_line;
 	new_map[prev_dim + 1] = NULL;
 	return (new_map);
+}
+
+char	***map_create(int fd)
+{
+	char	***map;
+	int		map_dim;
+	char	*line;
+	char	**line_split;
+
+	map_dim = 0;
+	map = (char ***)malloc(sizeof(char **) * (map_dim + 1));
+	map[map_dim] = NULL;
+	while (get_next_line(fd, &line))
+	{
+		line_split = ft_split(line, ' ');
+		map = reallocate_map(map, map_dim++, line_split);
+		free(line);
+	}
+	free(line);
+	return (map);
 }
