@@ -1,23 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_realloc_map.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/15 10:16:10 by ametta            #+#    #+#             */
+/*   Updated: 2021/11/15 11:07:13 by ametta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
-
-int alloc_line(char ***new, char **line)
-{
-	int	count_word;
-	int	i;
-
-	i = 0;
-	count_word = dim_line(line);
-	*new = (char **)malloc(sizeof(char *) * (count_word + 1));
-	if (!(*new))
-		return (1);
-	while (i < count_word)
-	{
-		(*new)[i] = ft_strdup(line[i]);
-		i++;
-	}
-	(*new)[i] = NULL;
-	return (0);
-}
 
 /*
 ** alloco il contenitore (formato da varie linee) + 1 (NULL)
@@ -25,25 +18,22 @@ int alloc_line(char ***new, char **line)
 ** allocco la parola
 ** alloco la nuova linea e le nuove parole come precedentemnte fatto
 */
-char ***reallocate_map(char ***map, int prev_dim, char **line)
+char	***reallocate_map(char ***old_map, int prev_dim, char **new_line)
 {
-	char	***new;
-	int	i_line;
+	char	***new_map;
+	int		i;
 
-	i_line = 0;
-	new = (char ***)malloc(sizeof(char **) * (prev_dim + 1));
-	if (!new)
+	i = 0;
+	new_map = (char ***)malloc(sizeof(char **) * (prev_dim + 1));
+	if (!new_map)
 		return (NULL);
-	while (i_line < prev_dim)
+	while (i < prev_dim)
 	{
-		if (alloc_line(&new[i_line], map[i_line]))
-			return (NULL);
-		free_split(map[i_line]);
-		i_line++;
+		new_map[i] = old_map[i];
+		i++;
 	}
-	if(alloc_line(&new[i_line], line))
-		return (NULL);
-	new[prev_dim + 1] = NULL;
-	free(map);
-	return (new);
+	free(old_map);
+	new_map[i] = new_line;
+	new_map[prev_dim + 1] = NULL;
+	return (new_map);
 }

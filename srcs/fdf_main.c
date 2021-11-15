@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:50:46 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/12 18:36:54 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/15 11:03:40 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,36 +32,38 @@ int	open_file(int argc, char **argv)
 	return (fd);
 }
 
-void	map_create(int fd)
+char	***map_create(int fd)
 {
 	char	***map;
-	int	map_dim;
+	int		map_dim;
 	char	*line;
 	char	**line_split;
 
 	map_dim = 0;
-	map = (char ***)malloc(sizeof(char**) * (map_dim + 1));
+	map = (char ***)malloc(sizeof(char **) * (map_dim + 1));
 	map[map_dim] = NULL;
 	while (get_next_line(fd, &line))
 	{
 		line_split = ft_split(line, ' ');
 		map = reallocate_map(map, map_dim++, line_split);
-		free_split(line_split);
+		// free_split(line_split);
 		free(line);
 	}
 	free(line);
-	print_map(map);
-	free_map(map);
+	return (map);
 }
 
 int	main(int argc, char **argv)
 {
 	int		fd;
+	char	***map;
 
 	fd = open_file(argc, argv);
 	if (fd < 0)
 		return (-1);
-	map_create(fd);
+	map = map_create(fd);
+	print_map(map);
+	free_map(map);
 	close(fd);
 	ft_putendl("---file close---");
 	return (0);
