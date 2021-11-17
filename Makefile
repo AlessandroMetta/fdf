@@ -4,7 +4,7 @@ RM = rm -rf
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 # libraries
-MLX = libmlx.dylib
+MLX = libmlx.a
 LIBFT = libft/libft.a
 
 NAME = fdf
@@ -12,6 +12,7 @@ NAME = fdf
 SRCS =	srcs/fdf_main.c		\
 	srcs/fdf_realloc_map.c	\
 	srcs/fdf_utils.c	\
+	srcs/fdf_draw.c	\
 	srcs/fdf_mlx_handling.c	\
 
 OBJS = $(SRCS:.c=.o)

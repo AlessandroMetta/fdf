@@ -6,15 +6,18 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 10:19:09 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/17 11:00:08 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/17 12:40:59 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
+# include <math.h> 
 # include "../libft/libft.h"
-# include "../mlx/mlx.h"
+# include "../minilibx_macos/mlx.h"
+# define SCREEN_WIDTH 500
+# define SCREEN_HEIGHT 500
 
 typedef struct s_data
 {
@@ -50,5 +53,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		exit_fdf(t_fdf *this);
 int		key_pressed(int keycode, t_fdf *this);
 void	win_gen(t_fdf *this);
+void	draw(t_fdf *this);
 
 #endif

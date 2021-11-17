@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:50:46 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/17 11:04:44 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/17 12:51:02 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ int	main(int argc, char **argv)
 	win_gen(&this);
 	mlx_hook(this.window_id, 2, 1L << 0, key_pressed, &this);
 	mlx_hook(this.window_id, 17, 1L << 5, exit_fdf, &this);
-	mlx_put_image_to_window(this.connect_id, this.window_id,
-		this.img.img, 0, 0);
+	draw(&this);
+	mlx_put_image_to_window(this.connect_id, this.window_id, this.img.img,
+			0, 0);
 	mlx_loop(this.connect_id);
 	return (0);
 }
