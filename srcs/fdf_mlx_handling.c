@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 10:35:30 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/17 11:01:01 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/17 11:14:35 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,20 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+void debugging(t_fdf *this)
+{
+	print_map(this->map.map);
+	ft_putstr("width\t");
+	ft_putnbr_fd(this->map.width, 1);
+	write(1, "\n", 1);
+	ft_putstr("height\t");
+	ft_putnbr_fd(this->map.height, 1);
+	write(1, "\n", 1);
+}
+
 int	exit_fdf(t_fdf *this)
 {
-//	print_map(this->map.map);
+	debugging(this);
 	free_map(this->map.map);
 	close(this->fd);
 	mlx_destroy_image(this->connect_id, this->img.img);

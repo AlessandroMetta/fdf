@@ -16,6 +16,7 @@ SRCS = ft_strlen.c \
 	   ft_strjoin.c \
 	   ft_atoi.c \
 	   ft_split.c \
+	   ft_putnbr_fd.c	\
 
 OBJS = $(SRCS:.c=.o)
 

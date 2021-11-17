@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:52:55 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/10 16:19:24 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/17 11:05:33 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ char	*ft_strdup(const char *s);
 char	*ft_strjoin(const char *s1, char const *s2);
 int		ft_atoi(const char *str);
 char	**ft_split(const char *str, const char chr);
+void	ft_putnbr_fd(int n, int fd);
 
 #endif
