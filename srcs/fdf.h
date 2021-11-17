@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 10:19:09 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/17 12:40:59 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/17 17:10:20 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <math.h> 
 # include "../libft/libft.h"
 # include "../minilibx_macos/mlx.h"
-# define SCREEN_WIDTH 500
-# define SCREEN_HEIGHT 500
+# define SCREEN_WIDTH 1000
+# define SCREEN_HEIGHT 800
 
 typedef struct s_data
 {

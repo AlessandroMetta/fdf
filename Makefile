@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
@@ -33,7 +33,7 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 	make fclean -C ./libft
-	# rm libmlx.dylib
+	# rm $(MLX)
 
 re: fclean all
 
