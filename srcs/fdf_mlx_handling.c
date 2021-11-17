@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 10:35:30 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/17 10:37:18 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/17 11:01:01 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int	exit_fdf(t_fdf *this)
 {
-	free_map(this->map);
+//	print_map(this->map.map);
+	free_map(this->map.map);
 	close(this->fd);
 	mlx_destroy_image(this->connect_id, this->img.img);
 	mlx_destroy_window(this->connect_id, this->window_id);

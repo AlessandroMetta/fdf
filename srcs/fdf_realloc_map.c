@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 10:16:10 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/16 16:22:42 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/17 10:57:44 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,40 +18,43 @@
 ** allocco la parola
 ** alloco la nuova linea e le nuove parole come precedentemnte fatto
 */
-char	***reallocate_map(char ***old_map, int prev_dim, char **new_line)
+char	***reallocate_map(t_map old_map, char **new_line)
 {
 	char	***new_map;
 	int		i;
 
 	i = 0;
-	new_map = (char ***)malloc(sizeof(char **) * (prev_dim + 1));
+	new_map = (char ***)malloc(sizeof(char **) * (old_map.height + 1));
 	if (!new_map)
 		return (NULL);
-	while (i < prev_dim)
+	while (i < old_map.height)
 	{
-		new_map[i] = old_map[i];
+		new_map[i] = old_map.map[i];
 		i++;
 	}
-	free(old_map);
+	free(old_map.map);
 	new_map[i] = new_line;
-	new_map[prev_dim + 1] = NULL;
+	if (i > old_map.width)
+		old_map.width = i;
+	new_map[old_map.height + 1] = NULL;
 	return (new_map);
 }
 
-char	***map_create(int fd)
+t_map	map_create(int fd)
 {
-	char	***map;
-	int		map_dim;
+	t_map	map;
 	char	*line;
 	char	**line_split;
 
-	map_dim = 0;
-	map = (char ***)malloc(sizeof(char **) * (map_dim + 1));
-	map[map_dim] = NULL;
+	map.height = 0;
+	map.width = 0;
+	map.map = (char ***)malloc(sizeof(char **) * (map.height + 1));
+	map.map[map.height] = NULL;
 	while (get_next_line(fd, &line))
 	{
 		line_split = ft_split(line, ' ');
-		map = reallocate_map(map, map_dim++, line_split);
+		map.map = reallocate_map(map, line_split);
+		map.height++;
 		free(line);
 	}
 	free(line);
