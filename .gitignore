@@ -1,4 +1,4 @@
 *.o
-*.a
+libft.a
 fdf
 .DS_Store
