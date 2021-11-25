@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 10:16:10 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/18 12:58:39 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/25 18:41:12 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,79 @@ char *ft_append(char *s1, char *s2)
 	return (s);
 }
 
-char	**map_create(int fd)
+void	print_map(char ***map, int height)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			ft_putstr(map[i][j]);
+			write(1, "\t", 1);
+			j++;
+		}
+		write(1, "\n", 1);
+		i++;
+	}
+}
+
+void free_map(char ***map, int height)
+{
+	int i;
+
+	i = 0;
+	while (i < height)
+	{
+		free_split(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+char ***map_populate(char **buff_split, int height)
+{
+	int		i;
+	char	***map;
+
+	map = malloc(sizeof(char **) * height);
+	i = 0;
+	while (i < height)
+	{
+		map[i] = ft_split(buff_split[i], ' ');
+		i++;
+	}
+	free_split(buff_split);
+	return (map);
+}
+
+char	***map_create(int fd)
 {
 	char	*buff;
-	char	*line;
-	char	**splitted;
+	char	*line_red;
+	char	**buff_split;
+	int		height;
+	char	***map;
 
 	buff = NULL;
-	while (get_next_line(fd, &line))
+	height = 0;
+	while (get_next_line(fd, &line_red))
 	{
 		if (!buff)
-			buff = ft_strdup(line);
+			buff = ft_strdup(line_red);
 		else
-			buff = ft_append(buff, line);
-		free(line);
+			buff = ft_append(buff, line_red);
+		free(line_red);
+		height++;
 	}
-	free(line);
-	splitted = ft_split(buff, '\n');
+	free(line_red);
+	buff_split = ft_split(buff, '\n');
 	free(buff);
-	return (splitted);
+	map = map_populate(buff_split, height);
+//	print_map(map, height);
+//	free_map(map, height);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:50:46 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/17 17:11:36 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/25 18:38:06 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	open_file(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_fdf	this;
-	char	**map;
+	char	***map;
 
 	this.fd = open_file(argc, argv);
 	if (this.fd < 0)
@@ -47,7 +47,5 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(this.connect_id, this.window_id, this.img.img,
 		0, 0);
 	mlx_loop(this.connect_id);
-*/	print_map(map);
-	free_map(map);
-	return (0);
+*/	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 10:19:09 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/18 12:58:52 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/25 18:17:41 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ typedef struct s_fdf
 	t_data	img;
 }				t_fdf;
 
-void	free_map(char **map);
-void	print_map(char **map);
 int	dim_line(char **line);
 void	free_split(char **l_split);
-char	**map_create(int fd);
+char	***map_create(int fd);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int	exit_fdf(t_fdf *this);
 int	key_pressed(int keycode, t_fdf *this);
