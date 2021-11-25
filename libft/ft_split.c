@@ -66,9 +66,9 @@ char	**ft_split(const char *line, const char chr)
 	char	**line_splitted;
 	int		wc;
 
-	wc = word_counter(line, chr);
 	if (!line)
 		return (NULL);
+	wc = word_counter(line, chr);
 	line_splitted = (char **)malloc(sizeof(char *) * (wc + 1));
 	if (!line_splitted)
 		return (NULL);

@@ -30,7 +30,7 @@ typedef struct s_data
 
 typedef struct s_map
 {
-	char	***map;
+	char	**map;
 	int		width;
 	int		height;
 }				t_map;
@@ -44,14 +44,14 @@ typedef struct s_fdf
 	t_data	img;
 }				t_fdf;
 
-void	free_map(char ***map);
-int		dim_line(char **line);
+void	free_map(char **map);
+void	print_map(char **map);
+int	dim_line(char **line);
 void	free_split(char **l_split);
-void	print_map(char ***map);
-t_map	map_create(int fd);
+char	**map_create(int fd);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		exit_fdf(t_fdf *this);
-int		key_pressed(int keycode, t_fdf *this);
+int	exit_fdf(t_fdf *this);
+int	key_pressed(int keycode, t_fdf *this);
 void	win_gen(t_fdf *this);
 void	draw(t_fdf *this);
 

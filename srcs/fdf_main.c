@@ -34,17 +34,20 @@ int	open_file(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_fdf	this;
+	char	**map;
 
 	this.fd = open_file(argc, argv);
 	if (this.fd < 0)
 		return (-1);
-	this.map = map_create(this.fd);
-	win_gen(&this);
+	map = map_create(this.fd);
+/*	win_gen(&this);
 	mlx_hook(this.window_id, 2, 1L << 0, key_pressed, &this);
 	mlx_hook(this.window_id, 17, 1L << 5, exit_fdf, &this);
 	draw(&this);
 	mlx_put_image_to_window(this.connect_id, this.window_id, this.img.img,
 		0, 0);
 	mlx_loop(this.connect_id);
+*/	print_map(map);
+	free_map(map);
 	return (0);
 }

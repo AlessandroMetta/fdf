@@ -1,7 +1,8 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+# CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
-MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
+# MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
 # libraries
 MLX = libmlx.a
@@ -12,8 +13,8 @@ NAME = fdf
 SRCS =	srcs/fdf_main.c		\
 	srcs/fdf_realloc_map.c	\
 	srcs/fdf_utils.c	\
-	srcs/fdf_draw.c	\
-	srcs/fdf_mlx_handling.c	\
+#	srcs/fdf_draw.c	\
+#	srcs/fdf_mlx_handling.c	\
 
 OBJS = $(SRCS:.c=.o)
 
@@ -21,7 +22,7 @@ $(NAME) : $(OBJS)
 			make -C ./libft
 			# make -C ./mlx
 			# mv mlx/$(MLX) .
-			$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(LIBFT) $(MLX) $(OBJS)
+			$(CC) $(CFLAGS) -o $(NAME) $(LIBFT) $(OBJS)
 
 all : $(NAME)
 

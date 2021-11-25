@@ -18,7 +18,7 @@
 # include <fcntl.h>
 
 # define MAX_FD 256
-# define BUFFER_SIZE 42
+# define BUFFER_SIZE 1
 
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_realloc(void *ptr, size_t size);
@@ -33,5 +33,7 @@ char	*ft_strjoin(const char *s1, char const *s2);
 int		ft_atoi(const char *str);
 char	**ft_split(const char *str, const char chr);
 void	ft_putnbr_fd(int n, int fd);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n);
 
 #endif

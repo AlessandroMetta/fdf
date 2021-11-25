@@ -12,25 +12,17 @@
 
 #include "fdf.h"
 
-void	free_map(char ***map)
+void	free_map(char **map)
 {
 	int	line;
-	int	word;
 
 	line = 0;
-	word = 0;
 	while (map[line])
 	{
-		word = 0;
-		while (map[line][word])
-		{
-			free(map[line][word]);
-			word++;
-		}
-		free(map[line][word]);
 		free(map[line]);
 		line++;
 	}
+	free(map[line]);
 	free(map);
 }
 
@@ -55,22 +47,14 @@ void	free_split(char **l_split)
 	free(l_split);
 }
 
-void	print_map(char ***map)
+void	print_map(char **map)
 {
 	int	line;
-	int	word;
 
 	line = 0;
-	word = 0;
 	while (map[line])
 	{
-		word = 0;
-		while (map[line][word])
-		{
-			ft_putstr(map[line][word]);
-			write(1, " ", 1);
-			word++;
-		}
+		ft_putstr(map[line]);
 		write(1, "\n", 1);
 		line++;
 	}
