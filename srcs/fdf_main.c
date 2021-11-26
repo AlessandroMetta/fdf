@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:50:46 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/25 18:38:06 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/26 12:31:38 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ int	open_file(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_fdf	this;
+//	t_fdf	this;
+	int		fd;
 	char	***map;
 
-	this.fd = open_file(argc, argv);
-	if (this.fd < 0)
+	fd = open_file(argc, argv);
+	if (fd < 0)
 		return (-1);
-	map = map_create(this.fd);
+	map = map_create(fd);
+	close(fd);
 /*	win_gen(&this);
 	mlx_hook(this.window_id, 2, 1L << 0, key_pressed, &this);
 	mlx_hook(this.window_id, 17, 1L << 5, exit_fdf, &this);

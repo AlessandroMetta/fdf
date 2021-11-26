@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 10:16:10 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/25 18:41:12 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/26 12:27:47 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ char ***map_populate(char **buff_split, int height)
 		map[i] = ft_split(buff_split[i], ' ');
 		i++;
 	}
-	free_split(buff_split);
 	return (map);
 }
 
@@ -106,7 +105,8 @@ char	***map_create(int fd)
 	buff_split = ft_split(buff, '\n');
 	free(buff);
 	map = map_populate(buff_split, height);
+	free_split(buff_split);
 //	print_map(map, height);
-//	free_map(map, height);
+	free_map(map, height);
 	return (NULL);
 }
