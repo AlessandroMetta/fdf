@@ -1,6 +1,6 @@
 CC = gcc
 # CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 # MLXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
@@ -11,8 +11,9 @@ LIBFT = libft/libft.a
 NAME = fdf
 
 SRCS =	srcs/fdf_main.c		\
-	srcs/fdf_realloc_map.c	\
+	srcs/fdf_parse_map.c	\
 	srcs/fdf_utils.c	\
+#	srcs/fdf_realloc_map.c	\
 #	srcs/fdf_draw.c	\
 #	srcs/fdf_mlx_handling.c	\
 

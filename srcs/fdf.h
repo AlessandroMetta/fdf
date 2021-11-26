@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 10:19:09 by ametta            #+#    #+#             */
-/*   Updated: 2021/11/25 18:17:41 by ametta           ###   ########.fr       */
+/*   Updated: 2021/11/26 17:34:10 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ typedef struct s_data
 
 typedef struct s_map
 {
-	char	**map;
-	int		width;
-	int		height;
+	int		pos_x;
+	int		pos_y;
+	int		z;
+	int		color;
+	struct s_map	*next;
+	struct s_map	*down;
 }				t_map;
 
 typedef struct s_fdf
@@ -44,13 +47,15 @@ typedef struct s_fdf
 	t_data	img;
 }				t_fdf;
 
-int	dim_line(char **line);
+int		dim_line(char **line);
 void	free_split(char **l_split);
 char	***map_create(int fd);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int	exit_fdf(t_fdf *this);
-int	key_pressed(int keycode, t_fdf *this);
+int		exit_fdf(t_fdf *this);
+int		key_pressed(int keycode, t_fdf *this);
 void	win_gen(t_fdf *this);
 void	draw(t_fdf *this);
+t_map	*ft_lstnew(int x, int y, int z, int color);
+void	ft_lstadd_back(t_map **lst, t_map *new);
 
 #endif
