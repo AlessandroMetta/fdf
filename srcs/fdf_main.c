@@ -1,9 +1,20 @@
-#include "fdf.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_main.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/01 11:48:32 by ametta            #+#    #+#             */
+/*   Updated: 2021/12/01 11:49:34 by ametta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void map_free(t_map **map, int height)
+#include "fdf.h"
+
+void	map_free(t_map **map, int height)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < height)
@@ -22,10 +33,10 @@ void	ft_putnbr_base(int nbr, char *ref_base, int base)
 		write(1, &ref_base[nbr], 1);
 }
 
-void map_print(t_map **map, int height, int width)
+void	map_print(t_map **map, int height, int width)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < height)
@@ -33,7 +44,7 @@ void map_print(t_map **map, int height, int width)
 		j = 0;
 		while (j < width)
 		{
-			ft_putnbr_fd((map[i][j].z), 1);
+			ft_putnbr_base(map[i][j].z, "0123456789", 10);
 			write(1, ",", 1);
 			ft_putnbr_base(map[i][j].color, "0123456789ABCDEF", 16);
 			write(1, "\t", 1);
@@ -44,9 +55,9 @@ void map_print(t_map **map, int height, int width)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_map **map;
+	t_map	**map;
 	int		height;
 	int		width;
 

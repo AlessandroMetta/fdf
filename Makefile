@@ -8,6 +8,7 @@ NAME = fdf
 
 SRCS =	srcs/fdf_main.c		\
 	srcs/fdf_parse.c	\
+	srcs/fdf_utils.c	\
 
 OBJS = $(SRCS:.c=.o)
 

@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_parse.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/01 11:45:18 by ametta            #+#    #+#             */
+/*   Updated: 2021/12/01 11:46:09 by ametta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
-#include <inttypes.h>
 
 void	get_mapdim(char *file_name, int *height, int *width)
 {
@@ -24,50 +35,52 @@ void	get_mapdim(char *file_name, int *height, int *width)
 	close(fd);
 }
 
-void	free_split(char **l_split)
+t_map	**map_alloc(int height, int width)
 {
-	int	w;
+	t_map	**map;
+	int		i;
 
-	w = 0;
-	while (l_split[w])
-		free(l_split[w++]);
-	free(l_split[w]);
-	free(l_split);
+	i = 0;
+	map = (t_map **)malloc(sizeof(t_map *) * height);
+	while (i < height)
+		map[i++] = (t_map *)malloc(sizeof(t_map) * width);
+	return (map);
 }
 
+void	put_value(t_map *row, char *line)
+{
+	int		j;
+	char	**split;
+
+	j = 0;
+	split = ft_split(line, ' ');
+	while (split[j])
+	{
+		row[j].z = ft_atoi_base(split[j], 10);
+		if (!ft_strchr(split[j], ','))
+			row[j].color = 0xFFFFFF;
+		else
+			row[j].color = ft_atoi_base(ft_strchr(split[j], ',') + 3, 16);
+		j++;
+	}
+	free_split(split);
+}
 
 t_map	**map_create(char *file_name, int height, int width)
 {
 	int		i;
-	int		j;
 	t_map	**map;
 	char	*line;
-	char	**split;
 	int		fd;
 
 	i = 0;
 	line = NULL;
-	map = NULL;
-	map = (t_map **)malloc(sizeof(t_map *) * height);
-	while (i < height)
-		map[i++] = (t_map *)malloc(sizeof(t_map) * width);
+	map = map_alloc(height, width);
 	fd = open(file_name, O_RDONLY, 0);
-	i = 0;
 	while (get_next_line(fd, &line))
 	{
-		split = ft_split(line, ' ');
-		j = 0;
-		while (split[j])
-		{
-			map[i][j].z = atoi(split[j]);
-			if (!ft_strchr(split[j], ','))
-				map[i][j].color = 0xFFFFFF;
-			else
-				map[i][j].color = strtol(ft_strchr(split[j], ',') + 1, NULL, 16); 
-			j++;
-		}
+		put_value(map[i], line);
 		i++;
-		free_split(split);
 		free(line);
 		line = NULL;
 	}
