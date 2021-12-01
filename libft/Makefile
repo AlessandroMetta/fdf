@@ -7,19 +7,14 @@ RM = rm -rf
 SRCS = ft_strlen.c \
 	   ft_putstr.c \
 	   get_next_line.c \
-	   ft_memmove.c \
-	   ft_bzero.c \
-	   ft_realloc.c \
 	   ft_strdup.c \
 	   ft_strchr.c \
 	   ft_putendl.c \
 	   ft_strjoin.c \
-	   ft_atoi.c \
 	   ft_atoi_base.c \
 	   ft_split.c \
 	   ft_putnbr_fd.c	\
-	   ft_strlcpy.c \
-	   ft_memccpy.c \
+	   ft_memmove.c \
 
 OBJS = $(SRCS:.c=.o)
 
