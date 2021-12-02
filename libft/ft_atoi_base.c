@@ -6,11 +6,25 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 10:03:37 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/01 12:34:27 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/02 17:10:48 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	checking(const char *str, size_t *i, int *sign)
+{
+	*i = 0;
+	*sign = 1;
+	while (ft_strchr(" \t\v\r\n\f", str[*i]))
+		(*i)++;
+	while (ft_strchr("-+", str[*i]))
+	{
+		if (str[*i] == '-')
+			(*sign) = -1;
+		(*i)++;
+	}
+}
 
 int	ft_atoi_base(const char *str, int base)
 {
@@ -19,19 +33,9 @@ int	ft_atoi_base(const char *str, int base)
 	size_t	num;
 
 	num = 0;
-	i = 0;
-	sign = 1;
 	if (!str || base < 2 || base > 16)
 		return (0);
-	while (ft_strchr(" \t\v\r\n\f", str[i]))
-		i++;
-	if (str[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
-	else if (str[i] == '+')
-		i++;
+	checking(str, &i, &sign);
 	while (ft_strchr("0123456789ABCDEFabcdef", str[i]))
 	{
 		num = (num * base);

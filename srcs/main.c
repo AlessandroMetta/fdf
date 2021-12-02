@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 11:48:32 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/01 12:04:51 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/02 16:43:25 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (1);
 	info->map = parse(argv[1], &info->height, &info->width);
-	info->ptr = mlx_init();
-	info->win = mlx_new_window(info->ptr, WIN_H, WIN_W, "fdf");
-	mlx_key_hook(info->win, ft_exit, info);
-	mlx_loop(info->ptr);
+	map_print(info->map, info->height, info->width);
+	map_free(info->map, info->height);
+	// info->ptr = mlx_init();
+	// info->win = mlx_new_window(info->ptr, WIN_H, WIN_W, "fdf");
+	// mlx_key_hook(info->win, ft_exit, info);
+	// mlx_loop(info->ptr);
 	return (0);
 }
