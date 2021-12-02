@@ -1,9 +1,11 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 LIBFT = libft/libft.a
-LIBMLX = mlx/libmlx.dylib
+LIBMLX = libmlx.dylib
+
+MLX_FLAGS = -Lmlx -framework OpenGL -framework AppKit
 
 NAME = fdf
 
@@ -16,7 +18,8 @@ OBJS = $(SRCS:.c=.o)
 $(NAME) : $(OBJS)
 			make -C ./libft
 			make -C ./mlx
-			$(CC) $(CFLAGS) -o $(NAME) $(LIBFT) $(LIBMLX) $(OBJS)
+			mv mlx/$(LIBMLX) .
+			$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) $(LIBFT) $(LIBMLX) $(OBJS)
 
 all : $(NAME)
 
@@ -26,7 +29,7 @@ clean:
 	$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(LIBMLX)
 	make fclean -C ./libft
 
 re: fclean all
