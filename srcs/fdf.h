@@ -14,6 +14,10 @@
 # define FDF_H
 
 # include "../libft/libft.h"
+# include "../mlx/mlx.h"
+
+#define WIN_H	800
+#define WIN_W	600
 
 typedef struct s_map
 {

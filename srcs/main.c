@@ -12,18 +12,39 @@
 
 #include "fdf.h"
 
-int	main(int argc, char **argv)
+typedef struct s_test
 {
 	t_map	**map;
-	int		height;
-	int		width;
+	int	height;
+	int	width;
+	void	*ptr;
+	void	*win;
+}	t_test;
 
-	width = 0;
-	height = 0;
+int	ft_exit(int keycode, t_test *info)
+{
+	if (keycode == 53)
+	{
+		map_free(info->map, info->height);
+		free(info);
+		exit(0);
+	}
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_test	*info;
+
+	info = malloc(sizeof(t_test));
+	info->width = 0;
+	info->height = 0;
 	if (argc != 2)
 		return (1);
-	map = parse(argv[1], &height, &width);
-	map_print(map, height, width);
-	map_free(map, height);
+	info->map = parse(argv[1], &info->height, &info->width);
+	info->ptr = mlx_init();
+	info->win = mlx_new_window(info->ptr, WIN_H, WIN_W, "fdf");
+	mlx_key_hook(info->win, ft_exit, info);
+	mlx_loop(info->ptr);
 	return (0);
 }
