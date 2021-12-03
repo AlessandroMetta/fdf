@@ -6,11 +6,12 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 11:48:32 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/03 11:29:41 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/03 18:18:46 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <math.h>
 
 int	ft_min(int a, int b)
 {
@@ -34,10 +35,50 @@ t_fdf	*struct_init(char *file_name)
 	info->width = 0;
 	info->height = 0;
 	info->map = parse(file_name, &info->height, &info->width);
-	info->scale = ft_min((WIN_W / info->width), (WIN_H / info->height));
+	// info->scale = ft_min((WIN_W / info->width), (WIN_H / info->height));
+	info->scale = 20;
 	info->ptr = mlx_init();
 	info->win = mlx_new_window(info->ptr, WIN_H, WIN_W, "fdf");
+	info->img.img = mlx_new_image(info->ptr, WIN_H, WIN_W);
+	info->img.addr = mlx_get_data_addr(info->img.img, &info->img.bits_per_pixel,
+			&info->img.line_length, &info->img.endian);
+	mlx_hook(info->win, 2, 1L<<0, key_manager, info);
+	mlx_hook(info->win, 17, 1L<<2, fdf_close, info);
 	return (info);
+}
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+void	draw(t_fdf *info)
+{
+	int	x;
+	int	y;
+	int pix_x;
+	int pix_y;
+
+	y = 0;
+	while (y < info->height)
+	{
+		x = 0;
+		while (x < info->width)
+		{
+			pix_x = ((x - y) * cos(0.523599)) * info->scale;
+			pix_y = ((x + y) * sin(0.523599) - info->map[y][x].z) * info->scale;
+			pix_x += WIN_W / 2;
+			pix_y += (WIN_H /*+ info->height * info->scale*/) / 3;
+			if (!(pix_x < 0 || pix_x > WIN_H || pix_y < 0 || pix_y > WIN_W))
+				my_mlx_pixel_put(&info->img, pix_x, pix_y, 0x00FFFFFF);	
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(info->ptr, info->win, info->img.img, 0, 0);
 }
 
 int	main(int argc, char **argv)
@@ -47,8 +88,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_puterror(1));
 	info = struct_init(argv[1]);
-	mlx_hook(info->win, 2, 1L<<0, key_manager, info);
-	mlx_hook(info->win, 17, 1L<<2, fdf_close, info);
+	draw(info);
 	mlx_loop(info->ptr);
 	return (0);
 }

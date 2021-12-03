@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 10:19:09 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/03 11:14:15 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/03 17:41:37 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ typedef struct s_map
 	int	color;
 }	t_map;
 
+typedef struct s_data
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_data;
+
 typedef struct s_fdf
 {
 	t_map	**map;
@@ -34,6 +43,7 @@ typedef struct s_fdf
 	int		scale;
 	void	*ptr;
 	void	*win;
+	t_data	img;
 }	t_fdf;
 
 t_map	**parse(char *file_name, int *height, int *width);
