@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 11:48:32 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/03 18:18:46 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/03 19:35:57 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ t_fdf	*struct_init(char *file_name)
 	info->width = 0;
 	info->height = 0;
 	info->map = parse(file_name, &info->height, &info->width);
-	// info->scale = ft_min((WIN_W / info->width), (WIN_H / info->height));
-	info->scale = 20;
+	info->scale = ft_min((WIN_W / info->width / 2), (WIN_H / info->height / 2));
 	info->ptr = mlx_init();
 	info->win = mlx_new_window(info->ptr, WIN_H, WIN_W, "fdf");
 	info->img.img = mlx_new_image(info->ptr, WIN_H, WIN_W);
@@ -70,10 +69,11 @@ void	draw(t_fdf *info)
 		{
 			pix_x = ((x - y) * cos(0.523599)) * info->scale;
 			pix_y = ((x + y) * sin(0.523599) - info->map[y][x].z) * info->scale;
-			pix_x += WIN_W / 2;
-			pix_y += (WIN_H /*+ info->height * info->scale*/) / 3;
+			pix_x += (WIN_W + info->width * info->scale) / 2;
+//			pix_y += WIN_H / 2 + info->height / 2;
+			pix_y += (WIN_H + info->height * info->scale) / 2;
 			if (!(pix_x < 0 || pix_x > WIN_H || pix_y < 0 || pix_y > WIN_W))
-				my_mlx_pixel_put(&info->img, pix_x, pix_y, 0x00FFFFFF);	
+				my_mlx_pixel_put(&info->img, pix_x, pix_y, info->map[y][x].color);	
 			x++;
 		}
 		y++;
