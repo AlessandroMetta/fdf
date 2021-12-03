@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 10:19:09 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/03 10:54:02 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/03 11:14:15 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_fdf
 	t_map	**map;
 	int		height;
 	int		width;
+	int		scale;
 	void	*ptr;
 	void	*win;
 }	t_fdf;
