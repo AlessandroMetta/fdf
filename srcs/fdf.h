@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 10:19:09 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/03 17:41:37 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/06 11:55:18 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,9 @@ void	map_free(t_map **map, int height);
 void	map_print(t_map **map, int height, int width);
 int		fdf_close(t_fdf *info);
 int		key_manager(int keycode, t_fdf *info);
+int		ft_min(int a, int b);
+int		ft_puterror(int error);
+t_fdf	*struct_init(char *file_name);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

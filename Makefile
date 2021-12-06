@@ -13,6 +13,7 @@ SRCS =	srcs/main.c		\
 	srcs/parse.c	\
 	srcs/parse_utils.c	\
 	srcs/exit_utils.c	\
+	srcs/utils.c	\
 
 OBJS = $(SRCS:.c=.o)
 
