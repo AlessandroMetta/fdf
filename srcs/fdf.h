@@ -6,7 +6,7 @@
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 10:19:09 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/06 11:55:18 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/07 12:01:56 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct s_map
 {
 	int	z;
 	int	color;
+	int	pix_x;
+	int	pix_y;
 }	t_map;
 
 typedef struct s_data
