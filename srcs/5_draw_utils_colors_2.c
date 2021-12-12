@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   5_draw_utils_colors_2.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/12 16:03:45 by ametta            #+#    #+#             */
+/*   Created: 2021/12/12 16:06:47 by ametta            #+#    #+#             */
 /*   Updated: 2021/12/12 16:08:38 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int argc, char **argv)
+int	create_trgb(int t, int r, int g, int b)
 {
-	t_env	env;
+	return (t << 24 | r << 16 | g << 8 | b);
+}
 
-	if (argc != 2)
-	{
-		ft_printf("Wrong number of argument\n");
-		exit(0);
-	}
-	init_mlx_and_img(&env);
-	env.map = parse(argv[1], &env.draw->height, &env.draw->width);
-	update_settings(&env);
-	init_pixels(&env.map, env.draw);
-	put_img(&env);
-	mlx_hook(env.win, 2, 1L << 0, key_hook, &env);
-	mlx_hook(env.win, 17, 1L << 2, exit_fdf, &env);
-	ft_printf("Successfully reached end of program\n");
-	mlx_loop(env.mlx);
-	return (0);
+int	get_t(int trgb)
+{
+	return ((trgb & (0xFF << 24)) >> 24);
+}
+
+int	get_r(int trgb)
+{
+	return ((trgb & (0xFF << 16)) >> 16);
+}
+
+int	get_g(int trgb)
+{
+	return ((trgb & (0xFF << 8)) >> 8);
+}
+
+int	get_b(int trgb)
+{
+	return ((trgb & 0xFF));
 }
