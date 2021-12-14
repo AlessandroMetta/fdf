@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_parsing_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: ametta <ametta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 16:06:05 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/12 16:08:38 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/14 14:04:48 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	get_mapdim(char *file_name, int *height, int *width)
 	line = NULL;
 	while (get_next_line(fd, &line))
 	{
-		(*height)++;
+		if (word_counter(line, ' ') != 0)
+			(*height)++;
 		free(line);
 		line = NULL;
 	}

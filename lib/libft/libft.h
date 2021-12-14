@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: ametta <ametta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 16:08:32 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/12 16:14:29 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/14 14:09:17 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
-int	ft_atoi_base(const char *str, int base);
-
+int		ft_atoi_base(const char *str, int base);
 
 char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, int start, size_t len);
@@ -87,7 +86,6 @@ int		ft_arr_cols(char **arr);
 int		ft_min(int a, int b);
 int		ft_max(int a, int b);
 
-
 //List mgt
 t_list	*create_element(int n, int index);
 t_list	*go_to_end(t_list *list);
@@ -100,6 +98,5 @@ void	bubble_sort_stack(t_list **b);
 
 // graphic
 int		ft_trgb(int t, int r, int g, int b);
-
 
 #endif

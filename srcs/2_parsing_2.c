@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_parsing_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: ametta <ametta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 16:06:12 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/12 16:08:38 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/14 14:05:11 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,11 @@ t_map	**map_create(char *file_name, int height, int width)
 	fd = open(file_name, O_RDONLY, 0);
 	while (get_next_line(fd, &line))
 	{
-		put_value(map[i], line);
-		i++;
+		if (word_counter(line, ' ') != 0)
+		{
+			put_value(map[i], line);
+			i++;
+		}
 		free(line);
 		line = NULL;
 	}
@@ -79,5 +82,3 @@ t_map	**map_create(char *file_name, int height, int width)
 	close(fd);
 	return (map);
 }
-
-

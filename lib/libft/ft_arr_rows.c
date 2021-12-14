@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_arr_rows.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: ametta <ametta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 16:07:58 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/12 16:11:41 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/14 14:08:06 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_arr_rows(char **arr)
 {
 	int	i;
-	int j;
+	int	j;
 
 	if (!arr)
 		return (-1);
@@ -24,7 +24,7 @@ int	ft_arr_rows(char **arr)
 	while (arr[i])
 	{
 		if ((int) ft_strlen(arr[i]) > j)
-			j = ft_strlen(arr[i]); 
+			j = ft_strlen(arr[i]);
 		i++;
 	}
 	return (j);

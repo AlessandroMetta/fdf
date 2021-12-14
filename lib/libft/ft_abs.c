@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: ametta <ametta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 16:08:03 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/12 16:08:38 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/14 14:12:15 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_abs(int n)
+int	ft_abs(int n)
 {
 	if (n < 0)
 		return (-n);

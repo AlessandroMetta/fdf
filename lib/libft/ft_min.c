@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ametta <ametta@student.42roma.it>          +#+  +:+       +#+        */
+/*   By: ametta <ametta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 16:10:50 by ametta            #+#    #+#             */
-/*   Updated: 2021/12/12 16:11:41 by ametta           ###   ########.fr       */
+/*   Updated: 2021/12/14 14:11:04 by ametta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_min(int a, int b)
+int	ft_min(int a, int b)
 {
 	if (a < b)
 		return (a);
